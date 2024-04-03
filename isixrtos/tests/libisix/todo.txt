@@ -1,0 +1,12 @@
+ Planned tasks (2.1)
+- API for events without IRQ support or post it by scheduled work
+- Optimize libc and GCC compiler generate new GCC5 
+- Complete unit tests for FS env engine
+- Serial console in the OS CORE.
+- MPU kernel protection and hardening.
+- Device drivers library:
+	handling: clocks, devices, device classes etc.
+
+
+
+
