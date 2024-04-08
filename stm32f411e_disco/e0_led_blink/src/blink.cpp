@@ -10,16 +10,6 @@ namespace {
 }
 
 namespace app {
-    void test_thread(void*) {
-        for(int i=0;;++i) {
-            isix::wait_ms(500);
-            if(i%2==0) {
-                dbprintf("Loop %i",i>>1);
-            }
-            periph::gpio::set(led_0, i%2);
-        }
-    }
-
     void print_array(int tab[], int tabLength){
     for(int i = 0; i < tabLength; ++i) {
         dbprintf("%d ", tab[i]);
@@ -52,15 +42,47 @@ namespace app {
         int tab[] = {9, 2, 5, 1, 7, 6, 8, 3, 4, 0};
         const int tabLength = sizeof(tab) / sizeof(tab[0]);
 
-        dbprintf("Unsorted table:");
-        print_array(tab, tabLength);
+        // dbprintf("Unsorted table:");
+        // print_array(tab, tabLength);
 
         sort(tab, tabLength);
 
-        dbprintf("Sorted table:");
-        print_array(tab, tabLength);
+        // dbprintf("Sorted table:");
+        // print_array(tab, tabLength);
     }
 
+
+    void test_thread(void*) {
+        for(int i=0;;++i) {
+
+            if (i %5 == 0) {
+                dbprintf("Ujiffies: %lu\n", (unsigned long)isix::get_ujiffies());
+            }
+            
+            for (int j = 0; j < 10; j++){
+                test_sort_function();
+            }
+
+            // osutick_t ticks = isix::get_ujiffies();
+            // dbprintf("Ujiffies: %llu\n", (unsigned long long)ticks);
+            // dbprintf("Ujiffies: %llu\n", (unsigned long long)isix::get_ujiffies());
+
+            
+
+
+            isix::wait_ms(500);
+            if(i%5==0) {
+                dbprintf("Loop test %i",i>>1);
+            }
+            periph::gpio::set(led_0, i%2);
+
+            
+        }
+    }
+
+    
+
+   
     // void test_thread(void*) {
     //     for(int i = 0; i < 10; ++i) { 
     //         test_sort_function();
