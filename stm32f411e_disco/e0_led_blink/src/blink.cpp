@@ -72,16 +72,13 @@ namespace app {
 
             isix::wait_ms(500);
             if(i%5==0) {
-                dbprintf("Loop test %i",i>>1);
+                dbprintf("Loop %i",i>>1);
             }
             periph::gpio::set(led_0, i%2);
 
             
         }
     }
-
-    
-
    
     // void test_thread(void*) {
     //     for(int i = 0; i < 10; ++i) { 
